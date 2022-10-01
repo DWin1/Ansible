@@ -1,0 +1,10 @@
+---
+- file:
+    path: /home/qq/ansible_test/download
+    state: directory
+- file:
+    path: /home/qq/ansible_test/download/test.txt
+    state: touch
+- get_url:
+    url: https://raw.githubusercontent.com/ansible/ansible/devel/README.rst
+    dest: /home/qq/ansible_test/download/test.txt 
