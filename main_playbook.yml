@@ -1,0 +1,9 @@
+---
+- hosts: servers
+  roles:
+    - create_user
+    - download
+    - geerlingguy.nginx
+    - geerlingguy.mysql
+    - geerlingguy.php
+         
