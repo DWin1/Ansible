@@ -1,0 +1,5 @@
+---
+- file:
+    path: /home/qq/ansible_test/download
+    state: directory
+  when: dir | default(false) | bool

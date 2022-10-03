@@ -1,10 +1,10 @@
 ---
-- file:
-    path: /home/qq/ansible_test/download
-    state: directory
-- file:
-    path: /home/qq/ansible_test/download/test.txt
-    state: touch
-- get_url:
-    url: https://raw.githubusercontent.com/ansible/ansible/devel/README.rst
-    dest: /home/qq/ansible_test/download/test.txt 
+- name: Execute create_dir.yml tasks
+  include_tasks: create_dir.yml
+
+- name: Execute create_file.yml tasks
+  include_tasks: create_file.yml
+
+- name: Execute get_url.yml tasks
+  include_tasks: get_url.yml
+  when: url | default('false') | bool

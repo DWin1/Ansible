@@ -1,3 +1,13 @@
 ---
-- user:
-    name: OS
+- name: Create users
+  become: true
+  user:
+    name: "{{ item.login }}"
+    password: "{{ item.pass | password_hash('sha512') }}"
+    create_home: "{{ item.create_home }}"
+    move_home: "{{ item.move_home }}"
+    home: "{{ item.home }}"
+    generate_ssh_key: "{{ item.generate_ssh_key }}"
+    ssh_key_bits: "{{ item.ssh_key_bits }}"
+    ssh_key_file: "{{ item.ssh_key_file }}"
+  with_list: "{{ users }}"
