@@ -1,0 +1,6 @@
+[servers]
+localhost
+lan_server ansible_host=10.0.0.2 ansible_user=qq ansible_pass=1
+
+
+
