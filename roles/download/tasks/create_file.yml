@@ -1,0 +1,4 @@
+---
+- file:
+    path: /home/qq/ansible_test/download/test.txt
+    state: touch
