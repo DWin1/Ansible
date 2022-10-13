@@ -1,9 +1,16 @@
 ---
 - hosts: servers
+  vars_files:
+    - vars/wordpress.yml
   roles:
-    - create_user
-    - download
-    - geerlingguy.nginx
-    - geerlingguy.mysql
-    - geerlingguy.php
-         
+    - { role: create_user, tags: [new_user, my] }
+    - { role: diag_role, tags: [diag, my] }
+    - { role: download, tags: [download, my] }
+    - { role: health_role, tags: [health, my] }
+    - { role: nginx, tags: [nginx, my] }
+    - { role: geerlingguy.nginx, tags: [nginx, external] }
+    - { role: geerlingguy.mysql, tags: [mysql, external] }
+    - { role: geerlingguy.php, tags: [php, external] }
+    - { role: wordpress, tags: [wordpress, external] }
+
+

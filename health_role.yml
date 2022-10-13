@@ -1,0 +1,4 @@
+---
+- hosts: servers
+  roles:
+    - health_role

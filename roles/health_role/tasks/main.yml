@@ -1,0 +1,8 @@
+---
+- name: Execute nginx_health.yml tasks
+  include_tasks: nginx_health.yml
+  tags: nginx, health
+
+- name: Execute mysql_health.yml tasks
+  include_tasks: mysql_health.yml
+  tags: mysql, health
