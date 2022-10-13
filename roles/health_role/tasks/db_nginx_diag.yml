@@ -1,0 +1,4 @@
+---
+- name: print health file
+  debug:
+    var: mysql_health

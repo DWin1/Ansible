@@ -1,0 +1,18 @@
+---
+- name: exec nginx health request
+  uri:
+    url: "http://{{ ansible_host }}:{{ nginx.port | default(8000) }}/var/log/nginx/health"
+    return_content: yes
+    status_code: 200
+  delegate_to: 127.0.0.1
+  register: nginx_out
+
+- set_fact:
+    nginx_health: "{{ nginx_out.content | from_json }}"
+
+- name: Print nginx_health
+  debug:
+    var: nginx_health.content.db["db"] | default(false) | bool
+
+- include_tasks: db_nginx_diag.yml
+  when: not nginx_health.content.db | default(false) | bool

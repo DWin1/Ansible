@@ -1,0 +1,18 @@
+---
+- name: exec mysql health request
+  uri:
+    url: "http://{{ ansible_host }}:{{ nginx.port | default(8000) }}/var/log/mysql/health"
+    return_content: yes
+    status_code: 200
+  delegate_to: 127.0.0.1
+  register: mysql_out
+
+- set_fact:
+    mysql_health: "{{ mysql_out.content | from_json }}"
+
+- name: Print mysql_health
+  debug:
+    var: mysql_health.content.db["db"] | default(false) | bool
+
+- include_tasks: db_mysql_diag.yml
+  when: not nginx_health.content.db | default(false) | bool
